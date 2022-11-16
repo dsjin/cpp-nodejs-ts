@@ -7,3 +7,5 @@ console.log(addon.addNumber(123, 1))
 addon.welcome('Bob', (result: string) => {
   console.log(result)
 })
+const object = addon.createObject('Msg...')
+console.log(object)
