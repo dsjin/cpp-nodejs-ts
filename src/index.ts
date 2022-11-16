@@ -9,3 +9,5 @@ addon.welcome('Bob', (result: string) => {
 })
 const object = addon.createObject('Msg...')
 console.log(object)
+const hello = addon.createHelloFunction()
+console.log(hello())

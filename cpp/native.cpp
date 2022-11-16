@@ -20,6 +20,16 @@ void Welcome(const CallbackInfo& info) {
   cb.Call(env.Global(), {Napi::String::New(env, std::string("Hello ") + msg.Utf8Value())});
 }
 
+String Hello(const CallbackInfo& info) {
+  return String::New(info.Env(), HelloWorld());
+}
+
+Function CreateHelloFunction(const CallbackInfo& info) {
+  Env env = info.Env();
+  Function fn = Function::New(env, Hello);
+  return fn;
+}
+
 Object CreateObject(const CallbackInfo& info) {
   Env env = info.Env();
 
@@ -49,15 +59,12 @@ Number AddNumber(const CallbackInfo& info) {
   return Number::New(info.Env(), Add(first.Int32Value(), second.Int32Value()));
 }
 
-String Hello(const CallbackInfo& info) {
-  return String::New(info.Env(), HelloWorld());
-}
-
 Object Init(Env env, Object exports) {
   exports.Set("hello", Function::New(env, Hello));
   exports.Set("addNumber", Function::New(env, AddNumber));
   exports.Set("welcome", Function::New(env, Welcome));
   exports.Set("createObject", Function::New(env, CreateObject));
+  exports.Set("createHelloFunction", Function::New(env, CreateHelloFunction));
   return exports;
 }
 
