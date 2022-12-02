@@ -1,4 +1,5 @@
 #include <napi.h>
+#include <library.hpp>
 #include "dsjin.h"
 #include <string>
 using namespace Napi;
@@ -21,7 +22,7 @@ void Welcome(const CallbackInfo& info) {
 }
 
 String Hello(const CallbackInfo& info) {
-  return String::New(info.Env(), HelloWorld());
+  return String::New(info.Env(), Test::helloworld() + std::string(" ") + DSJIN::HelloWorld());
 }
 
 Function CreateHelloFunction(const CallbackInfo& info) {
